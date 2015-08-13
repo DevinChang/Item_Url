@@ -6,7 +6,6 @@
 
 int main(int argc, char *argv[])
 {
-	int sel;
 	char c[64] = {0};
 	std::cout << "Please choose mode:" << std::endl<<"[ 1 ] - Direct output to a file"<< std::endl << "[ 2 ] - Input the url" <<std::endl << "[-1 ] - Quit" << std::endl;
 	//std::cin >> sel;

@@ -24,7 +24,10 @@
     <ClCompile Include="DownHtml.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="AhoCorasick.cpp">
+    <ClCompile Include="MyThread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MyThreadPool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,7 +38,13 @@
     <ClInclude Include="DownHtml.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AhoCorasick.h">
+    <ClInclude Include="Mtverify.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MyThread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MyThreadPool.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+#define MSG_DEPTNAME 101
+
+
 class Config
 {
 public:

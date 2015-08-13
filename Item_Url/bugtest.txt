@@ -33,3 +33,4 @@ www.dragonzone.com
 www.drvsky.com
 www.tudou.com
 www.eastmoney.com
+static.sse.com.cn

@@ -11,175 +11,157 @@
 
 #pragma comment(lib,"Wininet.lib") 
 
-//用AC多模匹配算法优化为遍历一次str即可把所有关键字的次数统计出来
-//modify: 8/4/17:53 经检验，AC多模匹配算法的算法达不到优化的目的。
-int DownHtml::Category(const std::string &Str)
-{
-	AhoCorasick AhoCk;
-	string ss[12] = {"新闻", "购物", "银行", "集团","游戏", "视频", "教育", "政府", "招聘", "通信", "健康", "旅游"};
-	vector<string>  ptns(ss, ss+12);
-	AhoCk.ac_creat_goto_table(ptns);
-	AhoCk.ac_creat_fail_table();
 
-	int ret = AhoCk.ac_search(Str);
-
-	AhoCk.ac_convert_to_DFA();
-
-	return ret;
-}
 //对每个类别统计次数
 int FindDeptNum(const std::string &Url, const std::string &Dept)
 {
-	int pos = 0;
-	int count = 0;
-	while(pos >= 0)
+	int Pos = 0;
+	int mCount = 0;
+	while(Pos >= 0)
 	{
-		pos = Url.find(Dept, pos + 8);
-		if (pos > 0)
-			count++;
+		Pos = Url.find(Dept, Pos + 8);
+		if (Pos > 0)
+			mCount++;
 	}
-	return count;
+	return mCount;
 }
 //找出配置文件中所有的section
-std::string *ExtractSection(const char *Buf, int Len, int *n)
+std::string *ExtractSection(const char *Buf, int Len, int *Num)
 {
-	if (Buf == NULL);
+	if (Buf == NULL) return NULL;
 	std::string *SecName = new std::string[32];
-	char tmp[16] = {0};
+	char Tmp[16] = {0};
 	int k = 0;
 	int i = 0;
 	int j = 0;
-	//pos = strstr(buf, "0");
 	for (; i < Len; i++)
 	{
 		if (Buf[i] != 0)
-			tmp[k++] = Buf[i];
+			Tmp[k++] = Buf[i];
 		else if (Buf[i + 1] != 0)
 		{	
-			SecName[j++] = tmp;
+			SecName[j++] = Tmp;
 			//std::cout << SecName[j];
 			//i++;
-			memset(tmp, 0, sizeof(tmp));
+			memset(Tmp, 0, sizeof(Tmp));
 			k = 0;
 			
 		}
 		else
 		{
 			//将最后一个元素进入队列
-			SecName[j++] = tmp;
+			SecName[j++] = Tmp;
 			break;
 		}
 	}
-	*n = j;
+	*Num = j;
 	return SecName;
 }
 
 //对每个section下的value进行检索
 int SearchValue(const char *Buf, const std::string &Url, int Len)
 {
-	std::string value[16];
-	char tmp[16] = {0};
+	std::string Value[16];
+	char Tmp[16] = {0};
 	int k = 0;
 	int j = 0;
 	int v = 0;
 	for (int i = 0; i < Len; i++)
 	{
 		while(Buf[j] != 32 && j < Len)
-			tmp[k++] = Buf[j++];
-		value[v++] = tmp;
+			Tmp[k++] = Buf[j++];
+		Value[v++] = Tmp;
 		i = j;
 		k = 0;
 		j++;
 	}
-	int num = 0;
-	int max = 0;
+	int Num = 0;
+	int Max = 0;
 	for (int i = 0; i < v; i++)
 	{
-		num = FindDeptNum(Url, value[i]);
-		max += num;
+		Num = FindDeptNum(Url, Value[i]);
+		Max += Num;
 	}
-	return max;
+	return Max;
 }
 
 //判断行业类别
 int DownHtml::Judge(const std::string &Str) //待优化
 {
-	int pos = 0;
-	int count = 0;
-	int a[12] = {0};
-
-	std::string *keyBuf;
-
-	char buf[32] = {0};
-	char secbuf[128] = {0};
-	char valuebuf[32] = {0};
-	//DWORD num;
-	int n = 0;
+	int Arr[12] = {0};
+	//??
+	char Secbuf[128] = {0};
+	char Valuebuf[32] = {0};
+	
+	int Num = 0;
 
 	//获取ini文件所有section的值，返回出的每个section是由两个NULL结尾的。
 	//modify: 8/7 17:00 对每个类别添加多个关键字，用ini文件读出每个关键字。
-	GetPrivateProfileSectionNames(secbuf, sizeof(secbuf), "./bin/initkey.ini");
-	keyBuf = ExtractSection(secbuf, sizeof(secbuf), &n);
+	GetPrivateProfileSectionNames(Secbuf, sizeof(Secbuf), "./bin/initkey.ini");
+	std::string *KeyBuf = ExtractSection(Secbuf, sizeof(Secbuf), &Num);
+	if (KeyBuf == NULL)
+		return -1;
 	//获取指定section下key_value的值
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < Num; i++)
 	{
-		GetPrivateProfileSection(keyBuf[i].c_str(), valuebuf, sizeof(valuebuf), "./bin/initkey.ini");
-		int buflen = strlen(valuebuf);
-		a[i] = SearchValue(valuebuf, Str, buflen);
+		GetPrivateProfileSection(KeyBuf[i].c_str(), Valuebuf, sizeof(Valuebuf), "./bin/initkey.ini");
+		int Buflen = strlen(Valuebuf);
+		Arr[i] = SearchValue(Valuebuf, Str, Buflen);
 	}
 
 	//释放内存
-	delete[]keyBuf;
+	delete[]KeyBuf;
 	
 	//判断数组中哪个元素最大，返回其下标
 	int k = 0;
-	int max = a[0];
+	int MaxNumber = Arr[0];
 	for (int i = 0; i < 12; i++)
 	{
-		if (a[i] > max)
+		if (Arr[i] > MaxNumber)
 		{
-			max = a[i];
+			MaxNumber = Arr[i];
 			k = i;
 		}
 	}
+	
 	return k;
 }
 
 std::string DownHtml::GetGateGory(const std::string &Url)
 {
-	std::string deptname;
-	std::string uf8;
-	int deptno = 0;
-	//modify: 8/25 10:34 多线程的优化要从这里开始
-	if (UTF8ToMB(uf8, Url.c_str(), strlen(Url.c_str())))
+	std::string Deptname;
+	std::string Uf8;
+	int Deptno = 0;
+	if (UTF8ToMB(Uf8, Url.c_str(), strlen(Url.c_str())))
 	{
-		deptno = Judge(uf8);
-		//deptno = Category(uf8);
+		Deptno = Judge(Uf8);
+		if (Deptno == -1)
+			return ERROR_MYSTRING;
 	}
 
 	//建立词典
-	std::map<int, std::string> m;
-	std::string mapstr;
-	std::fstream config;
-	config.open("./Config.txt");
+	std::string MapStr;
+	std::map<int, std::string> MyMap;
+	std::fstream mConfig;
+	mConfig.open("./Config.txt");
 	int i = 0;
-	while(getline(config, mapstr))
+	while(getline(mConfig, MapStr))
 	{
-		m.insert(std::map<int, std::string>::value_type(i, mapstr));
+		MyMap.insert(std::map<int, std::string>::value_type(i, MapStr));
 		i++;
 	}
-	std::map<int, std::string>::iterator it = m.find(deptno);
-	if (it != m.end())
-		deptname = m[deptno];
-	return deptname;
+	std::map<int, std::string>::iterator it = MyMap.find(Deptno);
+	if (it != MyMap.end())
+		Deptname = MyMap[Deptno];
+	
+	return Deptname;
 }
 
-//抓取页面源码并根据字典返回部门名称
+#if 0
 std::string DownHtml::GetUrlHtml(const char *Url)
 {
-	DWORD err;
-	std::string deptname;
-	std::string resouce;
+	DWORD SockErr;
+	std::string Resouce;
 	HINTERNET hInternet = InternetOpen("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, NULL);
 	HINTERNET hInternetUrl = InternetOpenUrl(hInternet, Url, NULL, NULL, INTERNET_FLAG_NO_CACHE_WRITE, NULL); 
 	do 
@@ -187,32 +169,93 @@ std::string DownHtml::GetUrlHtml(const char *Url)
 		if (hInternet == NULL) break;
 		if (hInternetUrl == NULL)
 		{
-			err = GetLastError();
-			printf("%d\n", err);
+			SockErr = GetLastError();
+			std::cout << SockErr << std::endl;
 			break;
 		}
-		
-		char p[1024] = {0};
+
+		char Tmp[1024] = {0};
 		DWORD ReadDataLength = 0;
 		bool bRet = true;
 		do
 		{
-			ZeroMemory(p, sizeof(1024)); //多字节，宽字节
-			if(!InternetReadFile(hInternetUrl, p, 1024, &ReadDataLength))
+			ZeroMemory(Tmp, sizeof(1024)); //多字节，宽字节
+			if(!InternetReadFile(hInternetUrl, Tmp, 1024, &ReadDataLength))
 				return NULL;
-			resouce.append(p, ReadDataLength);
-			
+			Resouce.append(Tmp, ReadDataLength);
+
 		}while(ReadDataLength > 0);
-		std::string uf8;
-		int deptno = 0;
-		
-		//modify: 8/25 10:34 多线程的优化要从这里开始
-		//deptname = GetGateGory(resouce);
 
 	} while (0);
 	InternetCloseHandle(hInternetUrl);
 	InternetCloseHandle(hInternet);
-	return resouce;
+	return Resouce;
+}
+#endif
+
+//抓取页面源码并根据字典返回部门名称
+//modify : 8/12 11:00 将WININET改成SOCKET从网页抓取源码
+std::string DownHtml::GetUrlHtml(const char *Url)
+{
+	//初始化socket
+	WSADATA WsaData = {0};
+	int Ret = WSAStartup(MAKEWORD(2, 2), &WsaData);
+	if (Ret != 0)
+	{
+		std::cout << Ret << std::endl;
+		return SOCKET_1_ERROR;
+	}
+	SOCKET MySocket;
+	MySocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	if (MySocket == -1 || MySocket == -2)
+	{
+		return SOCKET_2_ERROR;
+	}
+	struct hostent * Host = gethostbyname("www.baidu.com");
+	if (Host == NULL)
+	{
+		return SOCKET_3_ERROR;
+	}
+	SOCKADDR_IN mAddr;
+	mAddr.sin_family = AF_INET;
+	mAddr.sin_port = htons(80);
+	memcpy(&mAddr.sin_addr, Host->h_addr, 4);
+	if (connect(MySocket, (sockaddr *)&mAddr, sizeof(mAddr)) != 0)
+	{
+		return SOCKET_4_ERROR;
+	}
+	std::string TargetUrl = Url;
+	std::string Request = "GET /s?wd="+ TargetUrl + " HTTP/1.1\r\nHOST:www.baidu.com\r\nConnection:Close\r\n\r\n";
+	if (send(MySocket, Request.c_str(), Request.size(), 0) == SOCKET_ERROR)
+	{
+		return SOCKET_5_ERROR; 
+	}
+	char *PageBuf = new char[BUFF_MAX_LENGTH];
+	if (PageBuf == NULL)
+	{
+		std::cout << "New Memory Error! " << std::endl;
+	}
+	memset(PageBuf, 0, sizeof(PageBuf));
+	
+	int ByteRead = 0;
+	int ret = 1;
+	while (ret > 0)
+	{
+		ret = recv(MySocket, PageBuf + ByteRead, BUFF_MAX_LENGTH - ByteRead, 0);
+		if (ret > 0)
+			ByteRead += ret;
+		if (BUFF_MAX_LENGTH - ByteRead < 100)
+		{
+			std::cout << "Realloc Memory!" << std::endl;
+			PageBuf = (char *)realloc(PageBuf, BUFF_MAX_LENGTH);
+		}
+	}
+	PageBuf[ByteRead] = 0;
+	std::string Resouce = PageBuf;
+	delete[] PageBuf;
+	PageBuf = NULL;
+	WSACleanup();
+	return Resouce;
 }
 
 
@@ -222,16 +265,23 @@ bool DownHtml::UTF8ToMB(std::string& Pmb, const char* Pu8, int Utf8Len)
 	// convert an UTF8 string to widechar     
 	int nLen = MultiByteToWideChar(CP_UTF8, 0, Pu8, Utf8Len, NULL, 0);    
 
-	WCHAR* lpszW = NULL;    
+	WCHAR* lpszW = NULL;
+	/*
 	try    
 	{    
 		lpszW = new WCHAR[nLen];    
-	}    
+	}   
 	catch(std::bad_alloc &memExp)    
 	{    
 		return false;    
 	}    
-
+	*/
+	lpszW = new WCHAR[nLen];
+	if (lpszW == NULL)
+	{
+		std::cout << "new memroy err!" << std::endl;
+		return false;
+	}
 	int nRtn = MultiByteToWideChar(CP_UTF8, 0, Pu8, Utf8Len, lpszW, nLen);    
 
 	if(nRtn != nLen)    

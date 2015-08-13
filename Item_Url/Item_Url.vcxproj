@@ -68,14 +68,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AhoCorasick.cpp" />
     <ClCompile Include="DownHtml.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyThread.cpp" />
+    <ClCompile Include="MyThreadPool.cpp" />
     <ClCompile Include="spider.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AhoCorasick.h" />
     <ClInclude Include="DownHtml.h" />
+    <ClInclude Include="Mtverify.h" />
+    <ClInclude Include="MyThread.h" />
+    <ClInclude Include="MyThreadPool.h" />
     <ClInclude Include="spider.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
