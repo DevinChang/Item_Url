@@ -4,10 +4,10 @@
 #include <Windows.h>
 #include <process.h>
 #include <string>
+
 #define WIN32_LEAN_AND_MEAN
 
-#define MSG_DEAL_URL 100
-#define MSG_DEPTNAME 101
+
 /*
 线程类：通过这个类来创建一个线程，并处理相关业务，返回给主线程结果。
 */
@@ -21,30 +21,37 @@ typedef unsigned *PBGINTHREADEX_THREADID;
 
 typedef struct ThreadData
 {
-	std::string s_DepetName;
-	std::string s_URL;
+	std::string department;
+	std::string dept_url;
+	bool deal;
 }ThreadData;
 
-class MyThread
+struct NodeUrl
+{
+	std::string deal_url;
+	bool isdeal;
+};
+
+class CThread
 {
 public:
-	MyThread() : m_hThread(NULL), m_ThreadID(0), m_IsFree(true){}
-	void StartThread(DWORD);
-	void WaitForExit();
+	CThread() : thread_(NULL), thread_id_(0), isfree_(true){}
+	~CThread();
+	void StartThread();
 	static DWORD WINAPI ThreadFunc(LPVOID);
 	bool IsFree();
 	void SetStatus(bool);
 	HANDLE GetHandle();
+	void AssigTask(NodeUrl);
 	void AssigTask(const std::string &);
 	DWORD GetThreadID();
-	~MyThread(){ CloseHandle(m_hThread);}
-protected:
-	virtual DWORD ThreadMemberFunc(const std::string &);
-	std::string m_MyUrl;
-	HANDLE m_hThread;
-	DWORD m_ThreadID;
-	DWORD m_MainThrID;
+	void Destroy();
 private:
-	bool m_IsFree;
+	HANDLE thread_;
+	DWORD thread_id_;
+	DWORD main_thread_id_;
+	bool isfree_;
+	NodeUrl node_url_;
+	std::string tar_url_;
 };
 

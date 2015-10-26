@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D7C78CD6-D6F1-4E8C-803D-CA6CCDF60B3C}</ProjectGuid>
-    <RootNamespace>Item_Url</RootNamespace>
+    <ProjectGuid>{53D91C5A-C05C-46ED-98A0-0B2AE83B8893}</ProjectGuid>
+    <RootNamespace>DS</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -36,15 +36,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\boost\boost_1_58_0;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\boost\boost_1_58_0\bin\vc10\lib;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -68,18 +60,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DownHtml.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyThread.cpp" />
-    <ClCompile Include="MyThreadPool.cpp" />
-    <ClCompile Include="spider.cpp" />
+    <ClCompile Include="MainTestDS.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DownHtml.h" />
-    <ClInclude Include="Mtverify.h" />
-    <ClInclude Include="MyThread.h" />
-    <ClInclude Include="MyThreadPool.h" />
-    <ClInclude Include="spider.h" />
+    <ClInclude Include="demo1_GrayCode.h" />
+    <ClInclude Include="demo2_HappyNumber.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

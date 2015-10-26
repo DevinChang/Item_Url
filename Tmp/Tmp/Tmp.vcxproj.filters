@@ -15,36 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="demo_1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="spider.cpp">
+    <ClCompile Include="demo_2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DownHtml.cpp">
+    <ClCompile Include="demo_3.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MyThread.cpp">
+    <ClCompile Include="demo_4.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MyThreadPool.cpp">
+    <ClCompile Include="demo_5.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TmpBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TmpChild.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="demo_7.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="demo_6.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="spider.h">
+    <ClInclude Include="TmpBase.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DownHtml.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Mtverify.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MyThread.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MyThreadPool.h">
+    <ClInclude Include="TmpChild.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
