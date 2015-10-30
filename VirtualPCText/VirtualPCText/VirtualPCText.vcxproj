@@ -11,14 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E6370606-385E-4F40-B2C8-96739A966B24}</ProjectGuid>
-    <RootNamespace>Tmp</RootNamespace>
+    <ProjectGuid>{06CBE6C2-C756-4556-BC14-3B8DCF151872}</ProjectGuid>
+    <RootNamespace>VirtualPCText</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -41,6 +42,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -52,6 +54,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -60,21 +63,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="demo_1.cpp" />
-    <ClCompile Include="demo_2.cpp" />
-    <ClCompile Include="demo_3.cpp" />
-    <ClCompile Include="demo_4.cpp" />
-    <ClCompile Include="demo_5.cpp" />
-    <ClCompile Include="demo_6.cpp" />
-    <ClCompile Include="demo_7.cpp" />
-    <ClCompile Include="demo_8.cpp" />
-    <ClCompile Include="demo_9.cpp" />
-    <ClCompile Include="TmpBase.cpp" />
-    <ClCompile Include="TmpChild.cpp" />
+    <ClCompile Include="CheckTextDemo.cpp" />
+    <ClCompile Include="GetMacAddr.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="VirualCheck.cpp" />
+    <ClCompile Include="WinInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TmpBase.h" />
-    <ClInclude Include="TmpChild.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="VirualCheck.h" />
+    <ClInclude Include="WinInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

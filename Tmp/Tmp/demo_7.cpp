@@ -113,7 +113,7 @@ void ArrayMergeSort(int a[], int b[], int c[], int a_count, int b_count, int *ne
 	*new_count = num;
 }
 
-int main(int argc, char **argv)
+int main7(int argc, char **argv)
 {
 	//
 	int tmparr[10] = {3, 44, 38, 5, 27, 15, 2, 26, 27, 2};

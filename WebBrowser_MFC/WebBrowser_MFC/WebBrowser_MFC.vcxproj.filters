@@ -15,28 +15,51 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainTestDS.cpp">
+    <None Include="ReadMe.txt" />
+    <None Include="res\WebBrowser_MFC.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\WebBrowser_MFC.ico">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WebBrowser_MFC.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WebBrowser_MFCDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="explorer1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WebBrowser_MFC.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WebBrowser_MFCDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="explorer1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="demo2_HappyNumber.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="demo1_GrayCode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="demo3_ReverseInteger.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="demo4_StringToInteger.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="demo5_DynamicPrograming.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="demo6_WordPattern.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
+    <ResourceCompile Include="WebBrowser_MFC.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

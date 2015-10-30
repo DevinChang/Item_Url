@@ -11,8 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E6370606-385E-4F40-B2C8-96739A966B24}</ProjectGuid>
-    <RootNamespace>Tmp</RootNamespace>
+    <ProjectGuid>{0AB90441-73CB-4640-95B1-16FF7028C579}</ProjectGuid>
+    <RootNamespace>Socke_SSL</RootNamespace>
+    <ProjectName>Socket_SSL</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -36,7 +37,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\boost\boost_1_58_0;C:\Program Files (x86)\Visual Leak Detector\include;D:\Download\Microsoft DirectX SDK (June 2010)\Include;D:\openssl-1.0.0s\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>D:\boost\boost_1_58_0\bin\vc10\lib;C:\Program Files (x86)\Visual Leak Detector\lib\Win32;D:\Download\Microsoft DirectX SDK (June 2010)\Lib\x86;D:\boost\boost_1_58_0\bin\vc9\lib;D:\openssl-1.0.0s\out32dll;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -44,6 +50,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -60,21 +67,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="demo_1.cpp" />
-    <ClCompile Include="demo_2.cpp" />
-    <ClCompile Include="demo_3.cpp" />
-    <ClCompile Include="demo_4.cpp" />
-    <ClCompile Include="demo_5.cpp" />
-    <ClCompile Include="demo_6.cpp" />
-    <ClCompile Include="demo_7.cpp" />
-    <ClCompile Include="demo_8.cpp" />
-    <ClCompile Include="demo_9.cpp" />
-    <ClCompile Include="TmpBase.cpp" />
-    <ClCompile Include="TmpChild.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="TmpBase.h" />
-    <ClInclude Include="TmpChild.h" />
+    <ClCompile Include="demo_ssl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

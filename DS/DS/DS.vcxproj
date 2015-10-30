@@ -65,6 +65,10 @@
   <ItemGroup>
     <ClInclude Include="demo1_GrayCode.h" />
     <ClInclude Include="demo2_HappyNumber.h" />
+    <ClInclude Include="demo3_ReverseInteger.h" />
+    <ClInclude Include="demo4_StringToInteger.h" />
+    <ClInclude Include="demo5_DynamicPrograming.h" />
+    <ClInclude Include="demo6_WordPattern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

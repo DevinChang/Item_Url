@@ -15,45 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="demo_1.cpp">
+    <ClCompile Include="GetMacAddr.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="demo_2.cpp">
+    <ClCompile Include="VirualCheck.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="demo_3.cpp">
+    <ClCompile Include="CheckTextDemo.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="demo_4.cpp">
+    <ClCompile Include="WinInfo.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="demo_5.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="TmpBase.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="TmpChild.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="demo_7.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="demo_6.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="demo_8.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="demo_9.cpp">
+    <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TmpBase.h">
+    <ClInclude Include="VirualCheck.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="TmpChild.h">
+    <ClInclude Include="WinInfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
